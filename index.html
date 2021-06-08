@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> E-Meeting |HOME</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="images/hospital-logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app/style.css">
+    <link rel="stylesheet" href="css/app/public_index.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,900,700,700italic,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Cantata+One' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link href="lib/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="lib/xcrud/plugins/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.css" rel="stylesheet">
+    <link href="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
+    <link href="lib/xcrud/plugins/toastify-js-master/src/toastify.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .tabulator {
+            font-size: 14px;
+        }
+        /*google translate Dropdown */
+ .goog-te-banner-frame.skiptranslate {display: none !important;} 
+body { top: 0px !important; 
+    background: rgb(255, 255, 255);overflow-y: initial;}
+
+ #google_translate_element select{
+ background:#f6edfd;
+ color:#383ffa;
+ border: none;
+ border-radius:3px;
+ padding:6px 8px
+ }
+ 
+ /*google translate link | logo */
+   .goog-logo-link{
+   display:none!important;
+   }
+ .goog-te-gadget{
+ color:transparent!important;
+ }
+ 
+ /* google translate banner-frame */
+ 
+ .goog-te-banner-frame{
+ display:none !important;
+ }
+    </style>
+</head>
+
+
+
+<body style="background: rgb(255, 255, 255);" class="style-14 index-3">
+    <header>
+        <!-- Top bar starts -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="tb-contact pull-left">
+                    <i class="fa fa-envelope color"></i> &nbsp; <a style="color: white;" href="mailto:contact@emeeting.com">contact@emeeting.com</a> &nbsp;&nbsp;
+                    <i class="fa fa-phone color"></i> &nbsp; +254 (715 804 742)
+                </div>
+            </div>
+
+
+            <!-- Langauge starts -->
+            <div style="margin-right:30px;" class="tb-language dropdown pull-right">
+                <span id="google_translate_element"></span>
+            </div>
+            <!-- Language ends -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- Top bar ends -->
+
+
+
+        <!-- Header One Starts -->
+        <div class="header-1">
+            <!-- Container -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12" style="margin-bottom: 20px;">
+                        <!-- Logo section -->
+                        <div class="logo">
+                            <a style="color: blue; font-weight: 900; margin-top: 60px;  font-size: 20px; font-family: 'Lucida Sans', 
+                            'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">E-Meeting Platform</a>
+                            <button style="margin-top: 30px; margin-left: 60px;" type="button" id="sidebarCollapse" class="navbar-toggler">
+                                <i class="fa fa-bars"></i>
+                                <span class="sr-only">Toggle Menu</span>
+                              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    </div>
+    <!-- end header -->
+
+
+
+
+    <!-- start of main page -->
+    <main id="main">
+        <div style="background-color: rgb(216, 215, 214); height: 1px; margin-top: 4px;"></div>
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="p-4 pt-5">
+                    <ul class="list-unstyled components mb-5">
+                        <li>
+                            <a href="#app/all_meetings">All Meetings<i class="arrow"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="main-section" style="z-index: 100;">
+                <main style="height: 100%; background-color: #fff;" id="main">
+                    <section style="margin-right: 5px;" style="height: 100%; ">
+                        <div class="container  " data-aos="fade-up ">
+                            <!-- <div style=" margin-top: 20px;" class="section-title ">
+                                <h4> All Open Tenders
+                                </h4>
+                            </div> -->
+                            <div class="content-wrapper" style="margin-top: 0px">
+                                <div class="crud_section">
+
+                                </div>
+                                <div class="crud_section_2">
+
+                                </div>
+                            </div>
+                            <!-- <div id="tender_section">
+                                <div id="tenders-table" class="tenders-table ">
+                                </div>
+                            </div> -->
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+        <div style="height: 1px; background-color: rgb(204, 204, 204); margin-top: 4px;"></div>
+    </main>
+    <!-- end of main page -->
+    <!-- Modal -->
+    <div class="modal" id="meeting_add_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Meeting</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="patient_add_form">
+                            <div class="form-group">
+                                <label for="meeting_name">Meeting Name</label>
+                                <input type="text" class="form-control" id="meeting_name"
+                                placeholder="Enter Meeting Name" name="meeting_name" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="start_date_time">Start Date & Time</label>
+                                    <input type="text" class="form-control" id="start_date_time"
+                                    placeholder="Enter Start Date & Time" name="start_date_time" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="end_date_time">End Date & Time</label>
+                                    <input type="text" class="form-control" id="end_date_time"
+                                        placeholder="Enter End Date & Time" name="end_date_time" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="meeting_agenda"> Meeting Agenda</label>
+                                <textarea cols="100" rows="4" class="form-control" id="meeting_agenda"
+                                    name="meeting_agenda" placeholder="Enter Meeting Agenda"
+                                    required></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="meeting_add_form_button" class="btn btn-primary" style="float: right;
+                font-size: 18px;" >Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view_modal">
+
+      </div>
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/vendor/bootstrap_4/jquery.min.js"></script>
+    <script src="js/vendor/vendor.min.js"></script>
+    <script src="lib/xcrud/plugins/toastify-js-master/src/toastify.js"></script>
+    <script src="lib/xcrud/plugins/tabulator-master/dist/js/tabulator.js"></script>
+    <script src="lib/xcrud/plugins/xlsx.full.min.js"></script>
+    <script src="lib/xcrud/plugins/jspdf.min.js"></script>
+    <script src="lib/xcrud/plugins/jquery-migrate-3.0.0.min.js"></script>
+    <script src="lib/xcrud/plugins/tabulator-master/dist/js/tabulator.min.js"></script>
+    <script src="lib/xcrud/plugins/jspdf.plugin.autotable.js"></script>
+    <script src="lib/xcrud/plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="lib/xcrud/plugins/jcrop/jquery.Jcrop.min.js"></script>
+    <script src="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.min.js"></script>
+    <script src="js/vendor/app.min.js"></script>
+    <script src="lib/xcrud/plugins/visionmedia-page.js-0d7e127/page.js"></script>
+    <script src="js/controllers/controller.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        page.base('/');
+        page('/', controller.index);
+        page();
+    </script>
+
+    <script>
+        window.location = "#app/all_meetings";
+    </script>
+    <script>
+        function Create_Meeting_Modal(){
+            $('#meeting_add_modal').modal({backdrop: 'static', keyboard: false});
+        }
+    </script>
+         <script type="text/javascript">
+            function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en',
+            includedLanguages : 'sw,en',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');
+            }
+          </script>
+          <script>
+                $('body').on('change', '#google_translate_element select', updateLanguage);
+    
+                function updateLanguage(){
+                    $("body").css({"overflow-y":"initial","top": "0px !important"});
+                }
+          </script>
+          
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+.listings_edit{	
+	    
+    z-index: 100000;
+	position: absolute;
+	background: transparent;
+	padding: 0px;
+	height: 800px;
+	background: linear-gradient(182deg, rgb(239, 238, 238) 0%, rgb(251, 252, 251) 55%, rgb(255, 255, 255) 100%);
+	width: 100%;
+	  /* top: 70px; */
+	top: 10px;
+	
+}
