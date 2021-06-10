@@ -7025,7 +7025,7 @@ var controller = {
         console.log("load table method", method);
         var table = new Tabulator(tableId, {
             pagination: "local", //enable local pagination.
-            paginationSize: 4, // this option can take any positive integer value (default = 10)
+            paginationSize: 10, // this option can take any positive integer value (default = 10)
             placeholder: "No Data Available", //display message to user on empty table
             selectablePersistence: true, // disable rolling selection
             layout: "fitColumns",
