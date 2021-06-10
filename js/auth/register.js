@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
         document.getElementById('btn-register').innerHTML = "Loading ...";
         document.getElementById('btn-register').disabled = true;
         controller.show_progress();
-        var formJson = $("#login-ui").serializeObject();
+        var formJson = $("#register-ui").serializeObject();
         var postData = {
             "email": formJson['email'],
             "password": formJson['password']
