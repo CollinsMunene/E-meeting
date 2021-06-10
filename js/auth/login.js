@@ -29,7 +29,7 @@ $(document).ready(function() {
     
                     console.log("Usersaved>>>>>>>>>>", localStorage.getItem("userObj"));
     
-                    controller.showToastMsg("Log In successful!, Wait to be redirectd.","#1a5589")
+                    controller.showToastMsg("Log In successful!, Wait to be redirected.","#1a5589")
                     setTimeout(function() {
                         $('body').fadeOut('slow', function() {
                             window.location = "./#app/all_meetings"; //redirect to user profile
