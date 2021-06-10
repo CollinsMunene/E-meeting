@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
         controller.request(url, formData, async_status,function(data, status) {
             console.log(status);
             console.log(data);
-            if(status = "error"){
+            if(status == "error"){
                 controller.showToastMsg("Something went wrong.","#ff6666")
                 document.getElementById('btn-register').innerHTML = "Register";
                 document.getElementById('btn-register').disabled = false;
