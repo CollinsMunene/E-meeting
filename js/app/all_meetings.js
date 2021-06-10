@@ -1,38 +1,87 @@
 var relationObjectsMap = {
+
 };
 
 var relationObjectsMapParam = [
-    { 'postType': 'GET', 'entity': 'required_attachments', 'name': 'attachment_id', 'url': 'reverseAuction/auctionItems/parentID' },
+    { 'postType': 'GET', 'entity': 'all_meetings', 'name': 'meeting_id', 'url': 'get_all_meetings' },
+    { 'postType': 'GET', 'entity': 'meeting_documents', 'name': 'meeting_id', 'url': 'meeting_documents/parentID' },
+    { 'postType': 'GET', 'entity': 'meeting_issues', 'name': 'meeting_id', 'url': 'meeting_issues/parentID' },
+    { 'postType': 'GET', 'entity': 'participants', 'name': 'participant_id', 'url': 'get_all_participants/parentID' },
 ];
+
 var formObj = {
     url_id: 'all_meetings',
     formType_id: 51,
-    formName: 'meetings',
+    formName: 'all_meetings',
     tableTitle: "All Meetings",
     crudView: true,
-    crudEdit: false,
-    crudAdd:true,
+    crudEdit:true,
+    crudAdd: true,
+    dateFields: ['start_date_time','end_date_time'],
+    Mytabs: [{ tabName: 'meeting_details', tabTitle: 'Meeting Details', entityName: 'all_meetings' },
+        { tabName: 'meeting_documents', tabTitle: 'Documents', entityName: 'meeting_documents' },
+        { tabName: 'meeting_issues', tabTitle: 'Issues Raised', entityName: 'meeting_issues' },
+        { tabName: 'participants', tabTitle: 'Participants & Votes', entityName: 'participants' },
+    ],
     childTable: [],
-    Mytabs: [
-        { tabName: 'required_attachments', tabTitle: 'Contract Documents', entityName: 'required_attachments' },
+    fields: [{
+            'field': 'meeting_name',
+            'title': 'Meeting Name',
+            'visible': true,
+            'primary': false,
+            'relation': false,
+            'type': 'text',
+            'tab': 'meeting_details',
+        },
+        {
+            'field': 'meeting_agenda',
+            'title': 'Meeting Agenda',
+            'visible': true,
+            'primary': false,
+            'relation': false,
+            'type': 'text',
+            'tab': 'meeting_details',
+        },
+        {
+            'field': 'start_date_time',
+            'title': 'Start Date & Time',
+            'visible': true,
+            'primary': false,
+            'relation': false,
+            'type': 'text',
+            'tab': 'meeting_details',
+        },
+        {
+            'field': 'end_date_time',
+            'title': 'End Date & Time',
+            'visible': true,
+            'primary': false,
+            'relation': false,
+            'type': 'text',
+            'tab': 'meeting_details',
+        },
+        {
+            'field': 'meeting_id',
+            'title': '',
+            'visible': false,
+            'tooltip': '',
+            'primary': true,
+            'relation': false,
+            'type': 'hidden',
+            'disabled': true,
+        },
     ],
-    fields: [
-    ],
-    groupBy: [],
-    dateFields:['start_date_time','end_date_time'],
     relationObjects: [],
-    listUrl: serverURL + "get_all_meetings/",
-    editUrl:serverURL + "update/meeting",
+    listUrl: serverURL + "get_all_meetings",
     listingsArr: [
         { title: "#", formatter: "rownum", width: 50 },
-        { title: "Meeting Name", width: 254,field: "patient_identifier_id", sorter: "number", headerFilter: false },
-        { title: "Agenda", width: 250,field: "patient_gender", formatter: "textarea", sorter: "number", headerFilter: false },
-        { title: "Start Date", width: 130,field: "patient_age", formatter: "textarea", sorter: "number", headerFilter: false },
-        { title: "End Date",width: 130, field: "diagnosis_description",sorter: "number", headerFilter: false },
-        { title: "attendies",width: 130, field: "visit_count",sorter: "number", headerFilter: false },
+        { title: "Meeting Name", width: 200,field: "meeting_name",headerFilter: true },
+        { title: "Agenda", width: 250,field: "meeting_agenda", formatter: "textarea", headerFilter: false },
+        { title: "Start Date", width: 130,sorter:"datetime", sorterParams:{format:"DD/MM/YYYY hh:mm:ss"},field: "start_date_time",headerFilter: false },
+        { title: "End Date",width: 130, field: "end_date_time",headerFilter: false },
         {
             align: "center",
-            width: 100,
+            width: 365,
             title: "Action",
             headerSort: false,
             formatter: function(cell, formatterParams) {
@@ -44,50 +93,59 @@ var formObj = {
             }
         }
     ],
+    buttonsArr: [{ "buttonName": "View", "buttonType": "edit", "redirectURL": "" }], //,{"buttonName": "Delete","buttonType": "delete","redirectURL": ""}
+    viewButtonsArr: [{ "buttonName": "View", "buttonType": "edit", "redirectURL": "" }] //,{"buttonName": "Delete","buttonType": "delete","redirectURL": ""}        
 };
 
 var formObj2 = {
     url_id: 'tab',
-    formType_id: 322,
-    formName: 'required_attachments',
-    crudAdd: false,
+    formName: 'meeting_documents',
     crudView: false,
+    crudAdd: true,
     crudEdit: false,
-    crudDownloadAttachment: true,
-    buttonUploadContract:true,
-    parentID: 'meetings_id', //primary column for exporter
-    linkID: 'meetings_id', //link column in lowrisk
-    targetId: 'meetings', //id for target tab
+    crudDownloadAttachment:true,
+    parentID: 'meeting_id', //primary column for exporter
+    linkID: 'meeting_id', //link column in product
     childTable: [],
     Mytabs: [],
     fields: [{
-        'field': 'name',
-        'title': 'Description*',
-        'visible': true,
-        'tooltip': 'Please enter Farm Name',
-        'primary': false,
-        'relation': false,
-        'type': 'text',
-        'groupName': 'Farm & Location'
-    }, ],
+            'field': 'document_name',
+            'title': 'Document Name',
+            'visible': true,
+            'tooltip': 'Please enter Farm Name',
+            'primary': false,
+            'relation': false,
+            'type': 'text',
+        },
+        {
+            'field': 'document_id',
+            'title': '',
+            'visible': false,
+            'tooltip': '',
+            'primary': true,
+            'relation': false,
+            'type': 'hidden'
+        },
+    ],
     groupBy: [],
     relationObjects: [],
-    listUrl: serverURL + "contract/contractManagementDocument/parentID",
-    saveMessage: "Saved Successfully",
-    nextDocApprovalMessage: "Record has been forwarded to EAC",
-    listingsArr: [
-        { title: "#", formatter: "rownum", width: 40 },
+    listUrl: serverURL + "meeting_documents/parentID",
+    listingsArr: [{
+            title: "#",
+            formatter: "rownum",
+            width: 40
+        },
         {
             title: "Document Name",
-            field: "name",
+            field: "document_name",
             align: "middle",
             sorter: "number",
-            width: 824,
+            width: 600,
             headerFilter: false
         },
         {
             align: "center",
-            width: 200,
+            width: 412,
             title: "Action",
             headerSort: false,
             formatter: function(cell, formatterParams) {
@@ -96,26 +154,107 @@ var formObj2 = {
                 var data = row.getData();
                 var element = row.getElement();
                 var btntype = ['edit', 'delete'];
-                return controller.renderListButtons(data, cell, row, formObj3.formName);
+                return controller.renderListButtons(data, cell, row, formObj2.formName);
             },
+        }
+    ],      
+};
+
+var formObj3 = {
+    url_id: 'tab',
+    formName: 'meeting_issues',
+    // list: 'prequalificationTenderItem',
+    childTable: [],
+    Mytabs: [],
+    crudUpvote: true,
+    crudDownvote: true,
+    crudView: false,
+    crudAdd: false,
+    crudEdit: false,
+    parentID: 'meeting_id', //primary column for exporter
+    linkID: 'meeting_id', //link column in product
+    targetId: 'meeting', //id for target tab
+    fields: [{
+            'field': 'issue_name',
+            'title': 'Issue Name',
+            'visible': true,
+            'tooltip': 'Please enter ',
+            'primary': false,
+            'relation': false
+        },
+        {
+            'field': 'meeting_issue_id',
+            'title': '',
+            'visible': false,
+            'tooltip': '',
+            'primary': true,
+            'relation': false,
+            'type': 'hidden',
+            'disabled': true,
+        },
+
+    ],
+    groupBy: [],
+    relationObjects: [],
+    listUrl: serverURL + "meeting_issues/parentID",
+    listingsArr: [
+        { title: "#", formatter: "rownum", width: 40 },
+        { title: "Issue", field: "issue_name", width: 350, align: "middle", sorter: "number", headerFilter: false },
+        { title: "Total Votes", field: "votes", width: 250, align: "middle", sorter: "number", headerFilter: false },
+        {
+            align: "center",
+            width: 410,
+            title: "Action",
+            headerSort: false,
+            formatter: function(cell, formatterParams) {
+                var row = cell.getRow();
+                var data = row.getData();
+                var element = row.getElement();
+                return controller.renderListButtons(data, cell, row, formObj3.formName);
+            }
         }
     ],
 };
+
+var formObj4 = {
+    url_id: 'tab',
+    formName: 'participants',
+    // list: 'prequalificationTenderItem',
+    childTable: [],
+    Mytabs: [],
+    crudView: false,
+    crudAdd: false,
+    crudEdit: false,
+    parentID: 'meeting_id', //primary column for exporter
+    linkID: 'meeting_id', //link column in product
+    targetId: 'meeting', //id for target tab
+    fields: [
+    ],
+    groupBy: ['issue.issue_name','vote'],
+    relationObjects: [],
+    listUrl: serverURL + "get_all_participants/parentID",
+    listingsArr: [
+        { title: "#", formatter: "rownum", width: 40 },
+        { title: "Participant", field: "user.email", width: 350, align: "middle", sorter: "number", headerFilter: false },
+        { title: "Issue", field: "issue.issue_name", width: 291, align: "middle", sorter: "number", headerFilter: false },
+        { title: "Vote", field: "vote", width: 370, align: "middle", sorter: "number", headerFilter: false },
+    ],
+};
+
+
+
 function saveReturn() {
     window.location = "./#" + urlPage + "/" + formObj.url_id;
 }
 
 //After page load
 function afterLoad(myFormObj) {
+
     var winObj = controller.getWindowURLObject();
     windowId = winObj[winObj.length - 1];
     var table = $(".documentUploadStatus");
-
-    $(".save").click(function() {
-        $("#listings_edit").hide();
-    });
-
     controller.initActions();
+
 }
 
 $(document).ready(function() {
@@ -124,20 +263,16 @@ $(document).ready(function() {
     var windowId = winObj[winObj.length - 1];
     var pageName = winObj[winObj.length - 2];
 
-
     allFormObj[formObj.formName] = formObj; //register object to main form object
-    allFormObj[formObj2.formName] = formObj2;
+    allFormObj[formObj2.formName] = formObj2; //register object to main form object
+    allFormObj[formObj3.formName] = formObj3; //register object to main form object
+    allFormObj[formObj4.formName] = formObj4;
 
-    controller.renderCRUDForm("crud_section", formObj, function() {});;
 
-    $('.tabs.menu .item').tab({
-        'onVisible': function() {}
+    //formObj.listUrl = formObj.listUrl + company_id;
+    controller.renderCRUDForm("crud_section", formObj, function() {
+        console.log("CRUD Form Rendered");
     });
-
-    $("#pre-arrival").click(function() {
-        windows.location = "pre_arrival.html";
-    });
-
     function beforeStartWorkflow(callBack) {
         callBack(true);
     }

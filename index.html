@@ -52,6 +52,9 @@ body { top: 0px !important;
  .goog-te-banner-frame{
  display:none !important;
  }
+ html {
+			visibility: hidden;
+		}
     </style>
 </head>
 
@@ -85,7 +88,7 @@ body { top: 0px !important;
             <!-- Container -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12" style="margin-bottom: 20px;">
+                    <div class="col-md-4 col-sm-4" style="margin-bottom: 20px;">
                         <!-- Logo section -->
                         <div class="logo">
                             <a style="color: blue; font-weight: 900; margin-top: 60px;  font-size: 20px; font-family: 'Lucida Sans', 
@@ -95,6 +98,22 @@ body { top: 0px !important;
                                 <span class="sr-only">Toggle Menu</span>
                               </button>
                         </div>
+                    </div>
+                    <div class="col-md-8">
+                        <nav class=" navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light " id="ftco-navbar ">
+                            <div class="container ">
+                                <div class="collapse navbar-collapse " id="ftco-nav ">
+                                    <ul class="navbar-nav ml-auto " id="MyProfile" style="display: none;">
+                                        <!-- <li class="nav-item "><a href="" class="nav-link ">My Profile</a></li> -->
+                                        <li class="nav-item "><a href="" class="nav-link " onclick="backToLogin()">Log Out</a></li>
+                                    </ul>
+                                    <ul class="navbar-nav ml-auto " id="Register_Login">
+                                        <li class="nav-item "><a href="registration.html" class="nav-link ">Register</a></li>
+                                        <li class="nav-item "><a href="login.html" class="nav-link ">Login</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -148,7 +167,7 @@ body { top: 0px !important;
     </main>
     <!-- end of main page -->
     <!-- Modal -->
-    <div class="modal" id="meeting_add_modal" tabindex="-1" role="dialog">
+    <div class="modal meeting_add_modal" id="meeting_add_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -158,7 +177,7 @@ body { top: 0px !important;
               </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="patient_add_form">
+                <form method="POST" id="meeting_add_form">
                             <div class="form-group">
                                 <label for="meeting_name">Meeting Name</label>
                                 <input type="text" class="form-control" id="meeting_name"
@@ -184,7 +203,7 @@ body { top: 0px !important;
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" id="meeting_add_form_button" class="btn btn-primary" style="float: right;
+                <button type="button" id="meeting_add_form_button" onclick="AddMeeting()" class="btn btn-primary" style="float: right;
                 font-size: 18px;" >Save</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </form>
@@ -192,6 +211,33 @@ body { top: 0px !important;
           </div>
         </div>
       </div>
+
+      <div class="modal fade upload_form_modal" tabindex="-1" role="dialog" id="upload_form_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Document</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputCity">Upload File</label>
+                            <input type="file" class="form-control-file" id="meeting_upload_document">
+                            <!-- <textarea class="form-control" id="question_input"></textarea> -->
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="xcrud-action btn btn-info btn-sm" id="save_file" onclick="controller.uploadDoc()">Save Document</button> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="upload_document">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
       <div id="view_modal">
 
@@ -221,13 +267,102 @@ body { top: 0px !important;
     </script>
 
     <script>
-        window.location = "#app/all_meetings";
+                if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
+                    window.location = "login.html";
+                    document.getElementById("Register_Login").style.display = "flex";
+                    document.getElementById("MyProfile").style.display = "none";
+                } else {
+                    document.getElementById("MyProfile").style.display = "flex";
+                    document.getElementById("Register_Login").style.display = "none";
+                    window.location = "#app/all_meetings";
+                    document.getElementsByTagName("html")[0].style.visibility = "visible";
+                }
     </script>
+    
     <script>
         function Create_Meeting_Modal(){
             $('#meeting_add_modal').modal({backdrop: 'static', keyboard: false});
         }
+        function upload_document_modal(){
+            console.log("hey")
+            $('#upload_form_modal').modal({backdrop: 'static', keyboard: false});
+        }
+        $('#upload_document').click(function() {
+            var url = serverURL + "upload_documents";
+            data = new FormData();
+            data.append( 'document', $('#meeting_upload_document')[0].files[0] )
+            data.append('meeting_id',allFormObj['parent_selected']['meeting_id']);
+            $.ajax({
+                url: url,
+                data: data,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function ( data ) {
+                    console.log(data)
+                    
+                    if(data.status = "OK"){
+                        controller.showToastMsg("File Upload Succesful", "#1a5589");
+                        controller.refreshCrudTables('meeting_documents');
+                    }else{
+                        alert("File not Uploaded")
+                    }
+                    $('#upload_form_modal').modal('hide');
+                }
+            });
+        });
     </script>
+    <script>
+        function updateMeeting(){
+            var formJson = $("#meeting_update_form").serializeObject();
+            var formData = JSON.stringify(formJson);
+            console.log(formData)
+            var url = serverURL + "update_meeting/1";
+            var async_status = true;
+
+            controller.request(url, formData, async_status,function(data, status) {
+                console.log(status);
+                console.log(data);
+                controller.showToastMsg("Meeting Update","#1a5589")
+                controller.refreshCrudTables('all_meetings');
+                $('.modal.edit_meeting_modal').modal('hide');
+            });
+        }
+
+        function AddMeeting(){
+            var formJson = $("#meeting_add_form").serializeObject();
+            var formData = JSON.stringify(formJson);
+            console.log(formData)
+            var url = serverURL + "create_meeting";
+            var async_status = true;
+
+            controller.request(url, formData, async_status,function(data, status) {
+                console.log(status);
+                console.log(data);
+                controller.showToastMsg("Meeting Created","#1a5589")
+                controller.refreshCrudTables('all_meetings');
+                $('.modal.meeting_add_modal').modal('hide');
+            });
+        }
+    </script>
+        <script>
+            function backToLogin() {
+                if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
+                    window.location.href = "http://127.0.0.1/#app/all_meetings";
+                    location.reload();
+                } else {
+                    try {
+                        localStorage.removeItem("userObj");
+                        window.location.href = "http://127.0.0.1/#app/all_meetings";
+                        location.reload();
+                    } catch (e) {
+                        localStorage.removeItem("userObj");
+                        window.location.href = "http://127.0.0.1/#app/all_meetings";
+                        location.reload();
+                    }
+                }
+            }
+        </script>
          <script type="text/javascript">
             function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'en',

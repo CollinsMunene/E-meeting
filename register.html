@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap_4/roboto_font.css">
+
+    <link href="css/app/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,600" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
+</head>
+
+<style>
+    body {
+        margin-top: -50px;
+    }
+    
+    .alert-success,
+    .alert-rose {
+        color: #ffffff;
+    }
+    
+    .alert-default a,
+    .alert-default .alert-link {
+        color: rgba(0, 0, 0, 0.87);
+    }
+    
+    .alert span {
+        display: block;
+        max-width: 89%;
+    }
+    
+    .alert-success {
+        color: #285b2a;
+        background-color: #dbefdc;
+        border-color: #cde9ce;
+    }
+    
+    .alert-success hr {
+        border-top-color: #bbe1bd;
+    }
+    
+    .alert-success .alert-link {
+        color: #18381a;
+    }
+    
+    .alert.alert-success {
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+    }
+</style>
+
+<body>
+    <div style="border-radius: 8px; width: 450px;" class="form_wrapper">
+        <div class="form_container">
+
+            <div class="row clearfix">
+
+
+
+                <div class="">
+
+                    <form role="form" method="post" autocomplete="on" action="" id="register-ui">
+                        <h2 style="font-size: 18px;font-weight: 600; text-align: center;" class="register-title">E-Meeting Platform</h2>
+                        <hr style="margin-top: 2px; margin-bottom: 10px;">
+
+                        <div style="margin-bottom: -10px;" class="row clearfix">
+                            <div style="width: 100%; margin-bottom: -10px;" class="col_half">
+
+                                <label>Email Address</label>
+                                <div class="input_field">
+                                    <input type="email" name="email" id="email" placeholder="Enter Email" required />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="margin-bottom: -10px;" class="row clearfix">
+                            <div style="width: 100%; margin-bottom: -10px;" class="col_half">
+                                <label>Password</label>
+                                <div class="input_field">
+                                    <input type="password" name="password" id="password" placeholder="Enter Password" required />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" id="btn-register" style="width: 100%;outline: hidden; outline-style: hidden;outline-offset: 0; outline: none; opacity: 1;">Register</button>
+                    </form>
+                            <p>Have an account?
+                                <a href="login.html">Login</a>
+                            </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/vendor/bootstrap_4/jquery.min.js">
+</script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/vendor/bootstrap_4/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/vendor/bootstrap_4/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/vendor/bootstrap_4/mdb.min.js"></script>
+<script src="vendor/toastify-js-master/src/toastify.js"></script>
+<script src="js/controllers/controller.js"></script>
+<script src="js/auth/register.js"></script>
+
+</html>
