@@ -16,7 +16,8 @@ $.fn.serializeObject = function() {
 
 const publicPages = ["profile", "change-password", "error", "dashboard"];
 //var serverURL = "http://212.71.245.25:8080/services/api/";
-var serverURL = "http://127.0.0.1:8000/";
+// var serverURL = "http://127.0.0.1:8000/";
+var serverURK = "https://coseke-emeeting-backend.herokuapp.com/"
 // var serverUIURL = "http://172.104.150.137:8080/kephis-ui/#app/";
 
 
