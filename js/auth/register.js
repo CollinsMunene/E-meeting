@@ -17,8 +17,20 @@ jQuery(document).ready(function() {
         controller.request(url, formData, async_status,function(data, status) {
             console.log(status);
             console.log(data);
-            document.getElementById('btn-register').innerHTML = "Register";
-            document.getElementById('btn-register').disabled = false;
+            if(status = "error"){
+                ontroller.showToastMsg("Something went wrong.","#ff6666")
+            }else{
+                controller.showToastMsg("Dear " + formJson['email']+" your account has been successfully created. Wait to be redirected", "#1a5589");
+                setTimeout(function() {
+                    $('body').fadeOut('slow', function() {
+                        window.location = "login.html"; //redirect to user profile
+                    });
+                }, 2000);
+            }
+            setTimeout(function() {
+                document.getElementById('btn-register').innerHTML = "Register";
+                document.getElementById('btn-register').disabled = false;
+            }, 4000);
 
         });
 

@@ -19,19 +19,23 @@ $(document).ready(function() {
             controller.request(url, formData, async_status,function(data, status) {
                 console.log(status);
                 console.log(data);
-                var userobj = JSON.stringify(data); // stringify user data 
+                if(status == "error"){
+                    controller.showToastMsg("Wrong Email/Password.","#ff6666")
+                }else{
+                    var userobj = JSON.stringify(data); // stringify user data 
 
-                var jsonObj = JSON.stringify(data); // stringify user data 
-                localStorage.setItem("userObj", jsonObj); // add the json obj to the local storage
-
-                console.log("Usersaved>>>>>>>>>>", localStorage.getItem("userObj"));
-
-
-                setTimeout(function() {
-                    $('body').fadeOut('slow', function() {
-                        window.location = "./#app/all_meetings"; //redirect to user profile
-                    });
-                }, 2000);
+                    var jsonObj = JSON.stringify(data); // stringify user data 
+                    localStorage.setItem("userObj", jsonObj); // add the json obj to the local storage
+    
+                    console.log("Usersaved>>>>>>>>>>", localStorage.getItem("userObj"));
+    
+                    controller.showToastMsg("Log In successful!, Wait to be redirectd.","#1a5589")
+                    setTimeout(function() {
+                        $('body').fadeOut('slow', function() {
+                            window.location = "./#app/all_meetings"; //redirect to user profile
+                        });
+                    }, 2000);
+                }
 
                 setTimeout(function() {
                     document.getElementById('btn-login').innerHTML = "Log In";
