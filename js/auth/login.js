@@ -20,7 +20,9 @@ $(document).ready(function() {
                 console.log(status);
                 console.log(data);
                 if(status == "error"){
-                    controller.showToastMsg("Wrong Email/Password.","#ff6666")
+                    controller.showToastMsg("Wrong Email/Password.","#ff6666");
+                    document.getElementById('btn-login').innerHTML = "Log In";
+                    document.getElementById('btn-login').disabled = false;
                 }else{
                     var userobj = JSON.stringify(data); // stringify user data 
 
@@ -35,12 +37,12 @@ $(document).ready(function() {
                             window.location = "./#app/all_meetings"; //redirect to user profile
                         });
                     }, 2000);
+                    setTimeout(function() {
+                        document.getElementById('btn-login').innerHTML = "Log In";
+                        document.getElementById('btn-login').disabled = false;
+                    }, 3000);
                 }
 
-                setTimeout(function() {
-                    document.getElementById('btn-login').innerHTML = "Log In";
-                    document.getElementById('btn-login').disabled = false;
-                }, 3000);
 
             });
         });
