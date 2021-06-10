@@ -17,48 +17,11 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
 
-    <!-- <link href="lib/xcrud/plugins/datetime/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css"> -->
     <link href="lib/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.css" rel="stylesheet">
     <link href="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/toastify-js-master/src/toastify.css" rel="stylesheet" type="text/css" />
-    <style>
-        .tabulator {
-            font-size: 14px;
-        }
-        /*google translate Dropdown */
- .goog-te-banner-frame.skiptranslate {display: none !important;} 
-body { top: 0px !important; 
-    background: rgb(255, 255, 255);overflow-y: initial;}
-
- #google_translate_element select{
- background:#f6edfd;
- color:#383ffa;
- border: none;
- border-radius:3px;
- padding:6px 8px
- }
- 
- /*google translate link | logo */
-   .goog-logo-link{
-   display:none!important;
-   }
- .goog-te-gadget{
- color:transparent!important;
- }
- 
- /* google translate banner-frame */
- 
- .goog-te-banner-frame{
- display:none !important;
- }
- html {
-			visibility: hidden;
-		}
-    </style>
 </head>
-
-
 
 <body style="background: rgb(255, 255, 255);" class="style-14 index-3">
     <header>
@@ -96,7 +59,7 @@ body { top: 0px !important;
                             <button style="margin-top: 30px; margin-left: 60px;" type="button" id="sidebarCollapse" class="navbar-toggler">
                                 <i class="fa fa-bars"></i>
                                 <span class="sr-only">Toggle Menu</span>
-                              </button>
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -104,12 +67,7 @@ body { top: 0px !important;
                             <div class="container ">
                                 <div class="collapse navbar-collapse " id="ftco-nav ">
                                     <ul class="navbar-nav ml-auto " id="MyProfile" style="display: none;">
-                                        <!-- <li class="nav-item "><a href="" class="nav-link ">My Profile</a></li> -->
                                         <li class="nav-item "><a href="" class="nav-link " onclick="backToLogin()">Log Out</a></li>
-                                    </ul>
-                                    <ul class="navbar-nav ml-auto " id="Register_Login">
-                                        <li class="nav-item "><a href="registration.html" class="nav-link ">Register</a></li>
-                                        <li class="nav-item "><a href="login.html" class="nav-link ">Login</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,10 +100,6 @@ body { top: 0px !important;
                 <main style="height: 100%; background-color: #fff;" id="main">
                     <section style="margin-right: 5px;" style="height: 100%; ">
                         <div class="container  " data-aos="fade-up ">
-                            <!-- <div style=" margin-top: 20px;" class="section-title ">
-                                <h4> All Open Tenders
-                                </h4>
-                            </div> -->
                             <div class="content-wrapper" style="margin-top: 0px">
                                 <div class="crud_section">
 
@@ -154,122 +108,110 @@ body { top: 0px !important;
 
                                 </div>
                             </div>
-                            <!-- <div id="tender_section">
-                                <div id="tenders-table" class="tenders-table ">
-                                </div>
-                            </div> -->
                         </div>
                     </section>
                 </main>
             </div>
         </div>
-        <div style="height: 1px; background-color: rgb(204, 204, 204); margin-top: 4px;"></div>
     </main>
     <!-- end of main page -->
     <!-- Modal -->
     <div class="modal meeting_add_modal" id="meeting_add_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Create Meeting</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="meeting_add_form">
-                            <div class="form-group">
-                                <label for="meeting_name">Meeting Name</label>
-                                <input type="text" class="form-control" id="meeting_name"
-                                placeholder="Enter Meeting Name" name="meeting_name" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="start_date_time">Start Date & Time</label>
-                                    <input type="text" class="form-control" id="start_date_time"
-                                    placeholder="Enter Start Date & Time" name="start_date_time" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="end_date_time">End Date & Time</label>
-                                    <input type="text" class="form-control" id="end_date_time"
-                                        placeholder="Enter End Date & Time" name="end_date_time" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="meeting_agenda"> Meeting Agenda</label>
-                                <textarea cols="100" rows="4" class="form-control" id="meeting_agenda"
-                                    name="meeting_agenda" placeholder="Enter Meeting Agenda"
-                                    required></textarea>
-                    </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="meeting_add_form_button" onclick="AddMeeting()" class="btn btn-primary" style="float: right;
-                font-size: 18px;" >Save</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-        <div class="modal fade upload_form_modal" tabindex="-1" role="dialog" id="upload_form_modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Upload Document</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Meeting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="meeting_add_form">
+                        <div class="form-group">
+                            <label for="meeting_name">Meeting Name</label>
+                            <input type="text" class="form-control" id="meeting_name" placeholder="Enter Meeting Name" name="meeting_name" required>
+                        </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputCity">Upload File</label>
-                                <input type="file" class="form-control-file" id="meeting_upload_document">
-                                <!-- <textarea class="form-control" id="question_input"></textarea> -->
+                            <div class="form-group col-md-6">
+                                <label for="start_date_time">Start Date & Time</label>
+                                <input type="text" class="form-control" id="start_date_time" placeholder="Enter Start Date & Time" name="start_date_time" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="end_date_time">End Date & Time</label>
+                                <input type="text" class="form-control" id="end_date_time" placeholder="Enter End Date & Time" name="end_date_time" required>
                             </div>
                         </div>
-                        <!-- <button type="button" class="xcrud-action btn btn-info btn-sm" id="save_file" onclick="controller.uploadDoc()">Save Document</button> -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="upload_document">Submit</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                        <div class="form-group">
+                            <label for="meeting_agenda"> Meeting Agenda</label>
+                            <textarea cols="100" rows="4" class="form-control" id="meeting_agenda" name="meeting_agenda" placeholder="Enter Meeting Agenda" required></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="meeting_add_form_button" onclick="AddMeeting()" class="btn btn-primary" style="float: right;
+                font-size: 18px;">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="modal add_issue_form_modal" id="add_issue_form_modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+    <div class="modal fade upload_form_modal" tabindex="-1" role="dialog" id="upload_form_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Add Issue</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h5 class="modal-title">Upload Document</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputCity">Upload File</label>
+                            <input type="file" class="form-control-file" id="meeting_upload_document">
+                            <!-- <textarea class="form-control" id="question_input"></textarea> -->
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="xcrud-action btn btn-info btn-sm" id="save_file" onclick="controller.uploadDoc()">Save Document</button> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="upload_document">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal add_issue_form_modal" id="add_issue_form_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Issue</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="issue_add_form">
                         <div class="form-group">
-                            <label for="meeting_agenda"> Meeting Agenda</label>
-                            <textarea cols="100" rows="4" class="form-control" id="issue_name"
-                                name="issue_name" placeholder="Enter Issue Description"
-                                required></textarea>
+                            <label for="meeting_agenda"> Issue Name</label>
+                            <textarea cols="100" rows="4" class="form-control" id="issue_name" name="issue_name" placeholder="Enter Issue Description" required></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="meeting_add_form_button" onclick="AddIssue()" class="btn btn-primary" style="float: right;
-                    font-size: 18px;" >Save</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </form>
+                    font-size: 18px;">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
-      <div id="view_modal">
+    <div id="view_modal">
 
-      </div>
+    </div>
     <!-- JQuery -->
     <script type="text/javascript" src="js/vendor/bootstrap_4/jquery.min.js"></script>
     <script src="js/vendor/vendor.min.js"></script>
@@ -288,7 +230,6 @@ body { top: 0px !important;
     <script src="js/vendor/app.min.js"></script>
     <script src="lib/xcrud/plugins/visionmedia-page.js-0d7e127/page.js"></script>
     <script src="js/controllers/controller.js"></script>
-    <script src="js/main.js"></script>
     <script>
         page.base('/');
         page('/', controller.index);
@@ -296,47 +237,56 @@ body { top: 0px !important;
     </script>
 
     <script>
-                if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
-                    window.location = "login.html";
-                    document.getElementById("Register_Login").style.display = "flex";
-                    document.getElementById("MyProfile").style.display = "none";
-                } else {
-                    document.getElementById("MyProfile").style.display = "flex";
-                    document.getElementById("Register_Login").style.display = "none";
-                    window.location = "#app/all_meetings";
-                    document.getElementsByTagName("html")[0].style.visibility = "visible";
-                }
+        if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
+            window.location = "login.html";
+            document.getElementById("MyProfile").style.display = "none";
+        } else {
+            document.getElementById("MyProfile").style.display = "flex";
+            window.location = "#app/all_meetings";
+            document.getElementsByTagName("html")[0].style.visibility = "visible";
+        }
     </script>
-    
+
     <script>
-        function Create_Meeting_Modal(){
-            $('#meeting_add_modal').modal({backdrop: 'static', keyboard: false});
+        function Create_Meeting_Modal() {
+            $('#meeting_add_modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
         }
-        function upload_document_modal(){
+
+        function upload_document_modal() {
             console.log("hey")
-            $('#upload_form_modal').modal({backdrop: 'static', keyboard: false});
+            $('#upload_form_modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
         }
-        function add_issue_modal(){
-            $('#add_issue_form_modal').modal({backdrop: 'static', keyboard: false});
+
+        function add_issue_modal() {
+            $('#add_issue_form_modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
         }
         $('#upload_document').click(function() {
             var url = serverURL + "upload_documents";
             data = new FormData();
-            data.append( 'document', $('#meeting_upload_document')[0].files[0] )
-            data.append('meeting_id',allFormObj['parent_selected']['meeting_id']);
+            data.append('document', $('#meeting_upload_document')[0].files[0])
+            data.append('meeting_id', allFormObj['parent_selected']['meeting_id']);
             $.ajax({
                 url: url,
                 data: data,
                 processData: false,
                 contentType: false,
                 type: 'POST',
-                success: function ( data ) {
+                success: function(data) {
                     console.log(data)
-                    
-                    if(data.status = "OK"){
+
+                    if (data.status = "OK") {
                         controller.showToastMsg("File Upload Succesful", "#1a5589");
                         controller.refreshCrudTables('meeting_documents');
-                    }else{
+                    } else {
                         alert("File not Uploaded")
                     }
                     $('#upload_form_modal').modal('hide');
@@ -345,99 +295,113 @@ body { top: 0px !important;
         });
     </script>
     <script>
-        function updateMeeting(){
+        function updateMeeting() {
             var formJson = $("#meeting_update_form").serializeObject();
             var formData = JSON.stringify(formJson);
             console.log(formData)
-            var url = serverURL + "update_meeting/1";
+            var url = serverURL + "update_meeting/" + formJson['meeting_id'];
             var async_status = true;
 
-            controller.request(url, formData, async_status,function(data, status) {
+            controller.request(url, formData, async_status, function(data, status) {
                 console.log(status);
                 console.log(data);
-                controller.showToastMsg("Meeting Update","#1a5589")
+                controller.showToastMsg("Meeting Update", "#1a5589")
                 controller.refreshCrudTables('all_meetings');
                 $('.modal.edit_meeting_modal').modal('hide');
             });
         }
 
-        function AddMeeting(){
+        function AddMeeting() {
             var formJson = $("#meeting_add_form").serializeObject();
             var formData = JSON.stringify(formJson);
             console.log(formData)
             var url = serverURL + "create_meeting";
             var async_status = true;
 
-            controller.request(url, formData, async_status,function(data, status) {
+            controller.request(url, formData, async_status, function(data, status) {
                 console.log(status);
                 console.log(data);
-                controller.showToastMsg("Meeting Created","#1a5589")
+                controller.showToastMsg("Meeting Created", "#1a5589")
                 controller.refreshCrudTables('all_meetings');
                 $('.modal.meeting_add_modal').modal('hide');
             });
         }
 
-        function AddIssue(){
+        function AddIssue() {
             var formJson = $("#issue_add_form").serializeObject();
-            var postData = 
-                {
-                    "meeting_id": allFormObj['parent_selected']['meeting_id'],
-                    "issue_name": formJson['issue_name'],
-                    "votes": 0
-                }
+            var postData = {
+                "meeting_id": allFormObj['parent_selected']['meeting_id'],
+                "issue_name": formJson['issue_name'],
+                "votes": 0
+            }
             var formData = JSON.stringify(postData);
             var url = serverURL + "create_meeting_issue";
             var async_status = true;
 
-            controller.request(url, formData, async_status,function(data, status) {
+            controller.request(url, formData, async_status, function(data, status) {
                 console.log(status);
                 console.log(data);
-                controller.showToastMsg("Issue Created","#1a5589")
+                controller.showToastMsg("Issue Created", "#1a5589")
                 controller.refreshCrudTables('meeting_issues');
                 $('.modal.add_issue_form_modal').modal('hide');
             });
         }
     </script>
-        <script>
-            function backToLogin() {
-                if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
-                    window.location.href = "http://127.0.0.1/#app/all_meetings";
+    <script>
+        function backToLogin() {
+            if (localStorage.getItem("userObj") == null || localStorage.getItem("userObj") == "") {
+                window.location.href = serverURL + "#app/all_meetings";
+                location.reload();
+            } else {
+                try {
+                    localStorage.removeItem("userObj");
+                    window.location.href = serverURL + "/#app/all_meetings";
                     location.reload();
-                } else {
-                    try {
-                        localStorage.removeItem("userObj");
-                        window.location.href = "http://127.0.0.1/#app/all_meetings";
-                        location.reload();
-                    } catch (e) {
-                        localStorage.removeItem("userObj");
-                        window.location.href = "http://127.0.0.1/#app/all_meetings";
-                        location.reload();
-                    }
+                } catch (e) {
+                    localStorage.removeItem("userObj");
+                    window.location.href = serverURL + "/#app/all_meetings";
+                    location.reload();
                 }
             }
-        </script>
-         <script type="text/javascript">
-            function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en',
-            includedLanguages : 'sw,en',
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');
-            }
-          </script>
-          <script>
-                $('body').on('change', '#google_translate_element select', updateLanguage);
-    
-                function updateLanguage(){
-                    $("body").css({"overflow-y":"initial","top": "0px !important"});
-                }
-          </script>
-          
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        }
+    </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'sw,en',
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script>
+        $('body').on('change', '#google_translate_element select', updateLanguage);
+
+        function updateLanguage() {
+            $("body").css({
+                "overflow-y": "initial",
+                "top": "0px !important"
+            });
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 <script>
-    $("#start_date_time").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: "hh:mm tt", changeYear: true, yearRange: '1900:2099' });
-    $("#end_date_time").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: "hh:mm tt", changeYear: true, yearRange: '1900:2099' });
+    $("#start_date_time").datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: "hh:mm tt",
+        changeYear: true,
+        yearRange: '1900:2099'
+    });
+    $("#end_date_time").datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: "hh:mm tt",
+        changeYear: true,
+        yearRange: '1900:2099'
+    });
 </script>
-    
+
 
 </html>

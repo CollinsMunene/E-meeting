@@ -2,11 +2,30 @@ var relationObjectsMap = {
 
 };
 
-var relationObjectsMapParam = [
-    { 'postType': 'GET', 'entity': 'all_meetings', 'name': 'meeting_id', 'url': 'get_all_meetings' },
-    { 'postType': 'GET', 'entity': 'meeting_documents', 'name': 'meeting_id', 'url': 'meeting_documents/parentID' },
-    { 'postType': 'GET', 'entity': 'meeting_issues', 'name': 'meeting_id', 'url': 'meeting_issues/parentID' },
-    { 'postType': 'GET', 'entity': 'participants', 'name': 'participant_id', 'url': 'get_all_participants/parentID' },
+var relationObjectsMapParam = [{
+        'postType': 'GET',
+        'entity': 'all_meetings',
+        'name': 'meeting_id',
+        'url': 'get_all_meetings'
+    },
+    {
+        'postType': 'GET',
+        'entity': 'meeting_documents',
+        'name': 'meeting_id',
+        'url': 'meeting_documents/parentID'
+    },
+    {
+        'postType': 'GET',
+        'entity': 'meeting_issues',
+        'name': 'meeting_id',
+        'url': 'meeting_issues/parentID'
+    },
+    {
+        'postType': 'GET',
+        'entity': 'participants',
+        'name': 'participant_id',
+        'url': 'get_all_participants/parentID'
+    },
 ];
 
 var formObj = {
@@ -15,13 +34,29 @@ var formObj = {
     formName: 'all_meetings',
     tableTitle: "All Meetings",
     crudView: true,
-    crudEdit:true,
+    crudEdit: true,
     crudAdd: true,
-    dateFields: ['start_date_time','end_date_time'],
-    Mytabs: [{ tabName: 'meeting_details', tabTitle: 'Meeting Details', entityName: 'all_meetings' },
-        { tabName: 'meeting_documents', tabTitle: 'Documents', entityName: 'meeting_documents' },
-        { tabName: 'meeting_issues', tabTitle: 'Raised Issues', entityName: 'meeting_issues' },
-        { tabName: 'participants', tabTitle: 'Participants & Votes', entityName: 'participants' },
+    dateFields: ['start_date_time', 'end_date_time'],
+    Mytabs: [{
+            tabName: 'meeting_details',
+            tabTitle: 'Meeting Details',
+            entityName: 'all_meetings'
+        },
+        {
+            tabName: 'meeting_documents',
+            tabTitle: 'Documents',
+            entityName: 'meeting_documents'
+        },
+        {
+            tabName: 'meeting_issues',
+            tabTitle: 'Raised Issues',
+            entityName: 'meeting_issues'
+        },
+        {
+            tabName: 'participants',
+            tabTitle: 'Participants & Votes',
+            entityName: 'participants'
+        },
     ],
     childTable: [],
     fields: [{
@@ -73,12 +108,43 @@ var formObj = {
     ],
     relationObjects: [],
     listUrl: serverURL + "get_all_meetings",
-    listingsArr: [
-        { title: "#", formatter: "rownum", width: 50 },
-        { title: "Meeting Name", width: 200,field: "meeting_name",headerFilter: true },
-        { title: "Agenda", width: 250,field: "meeting_agenda", formatter: "textarea", headerFilter: false },
-        { title: "Start Date", width: 130,sorter:"datetime", sorterParams:{format:"DD/MM/YYYY hh:mm:ss"},field: "start_date_time",headerFilter: false },
-        { title: "End Date",width: 130, field: "end_date_time",headerFilter: false },
+    listingsArr: [{
+            title: "#",
+            formatter: "rownum",
+            width: 50
+        },
+        {
+            title: "Meeting Name",
+            width: 200,
+            field: "meeting_name",
+            formatter: "textarea",
+            headerFilter: true
+        },
+        {
+            title: "Agenda",
+            width: 250,
+            field: "meeting_agenda",
+            formatter: "textarea",
+            headerFilter: false
+        },
+        {
+            title: "Start Date",
+            width: 130,
+            sorter: "datetime",
+            sorterParams: {
+                format: "DD/MM/YYYY hh:mm:ss"
+            },
+            formatter: "textarea",
+            field: "start_date_time",
+            headerFilter: false
+        },
+        {
+            title: "End Date",
+            width: 130,
+            formatter: "textarea",
+            field: "end_date_time",
+            headerFilter: false
+        },
         {
             align: "center",
             width: 365,
@@ -93,8 +159,6 @@ var formObj = {
             }
         }
     ],
-    buttonsArr: [{ "buttonName": "View", "buttonType": "edit", "redirectURL": "" }], //,{"buttonName": "Delete","buttonType": "delete","redirectURL": ""}
-    viewButtonsArr: [{ "buttonName": "View", "buttonType": "edit", "redirectURL": "" }] //,{"buttonName": "Delete","buttonType": "delete","redirectURL": ""}        
 };
 
 var formObj2 = {
@@ -103,9 +167,9 @@ var formObj2 = {
     crudView: false,
     crudAdd: true,
     crudEdit: false,
-    crudDownloadAttachment:true,
-    parentID: 'meeting_id', //primary column for exporter
-    linkID: 'meeting_id', //link column in product
+    crudDownloadAttachment: true,
+    parentID: 'meeting_id', //primary column
+    linkID: 'meeting_id', //link column
     childTable: [],
     Mytabs: [],
     fields: [{
@@ -152,18 +216,15 @@ var formObj2 = {
 
                 var row = cell.getRow();
                 var data = row.getData();
-                var element = row.getElement();
-                var btntype = ['edit', 'delete'];
                 return controller.renderListButtons(data, cell, row, formObj2.formName);
             },
         }
-    ],      
+    ],
 };
 
 var formObj3 = {
     url_id: 'tab',
     formName: 'meeting_issues',
-    // list: 'prequalificationTenderItem',
     childTable: [],
     Mytabs: [],
     crudUpvote: true,
@@ -171,9 +232,9 @@ var formObj3 = {
     crudView: false,
     crudAdd: true,
     crudEdit: false,
-    parentID: 'meeting_id', //primary column for exporter
-    linkID: 'meeting_id', //link column in product
-    targetId: 'meeting', //id for target tab
+    parentID: 'meeting_id', //primary column
+    linkID: 'meeting_id', //link column
+    targetId: 'meeting', //name for target tab
     fields: [{
             'field': 'issue_name',
             'title': 'Issue Name',
@@ -197,10 +258,26 @@ var formObj3 = {
     groupBy: [],
     relationObjects: [],
     listUrl: serverURL + "meeting_issues/parentID",
-    listingsArr: [
-        { title: "#", formatter: "rownum", width: 40 },
-        { title: "Issue", field: "issue_name", width: 350, align: "middle", sorter: "number", headerFilter: false },
-        { title: "Total Votes", field: "votes", width: 250, align: "middle", sorter: "number", headerFilter: false },
+    listingsArr: [{
+            title: "#",
+            formatter: "rownum",
+            width: 40
+        },
+        {
+            title: "Issue",
+            field: "issue_name",
+            width: 350,
+            align: "middle",
+            formatter: "textarea",
+            headerFilter: false
+        },
+        {
+            title: "Total Votes",
+            field: "votes",
+            width: 250,
+            align: "middle",
+            headerFilter: false
+        },
         {
             align: "center",
             width: 410,
@@ -209,7 +286,6 @@ var formObj3 = {
             formatter: function(cell, formatterParams) {
                 var row = cell.getRow();
                 var data = row.getData();
-                var element = row.getElement();
                 return controller.renderListButtons(data, cell, row, formObj3.formName);
             }
         }
@@ -219,25 +295,45 @@ var formObj3 = {
 var formObj4 = {
     url_id: 'tab',
     formName: 'participants',
-    // list: 'prequalificationTenderItem',
     childTable: [],
     Mytabs: [],
     crudView: false,
     crudAdd: false,
     crudEdit: false,
-    parentID: 'meeting_id', //primary column for exporter
-    linkID: 'meeting_id', //link column in product
-    targetId: 'meeting', //id for target tab
-    fields: [
-    ],
-    groupBy: ['issue.issue_name','vote'],
+    parentID: 'meeting_id', //primary column 
+    linkID: 'meeting_id', //link column
+    targetId: 'meeting', //name for target tab
+    fields: [],
+    groupBy: ['issue.issue_name', 'vote'],
     relationObjects: [],
     listUrl: serverURL + "get_all_participants/parentID",
-    listingsArr: [
-        { title: "#", formatter: "rownum", width: 40 },
-        { title: "Participant", field: "user.email", width: 350, align: "middle", sorter: "number", headerFilter: false },
-        { title: "Issue", field: "issue.issue_name", width: 291, align: "middle", sorter: "number", headerFilter: false },
-        { title: "Vote", field: "vote", width: 370, align: "middle", sorter: "number", headerFilter: false },
+    listingsArr: [{
+            title: "#",
+            formatter: "rownum",
+            width: 40
+        },
+        {
+            title: "Participant",
+            field: "user.email",
+            width: 350,
+            align: "middle",
+            headerFilter: false
+        },
+        {
+            title: "Issue",
+            field: "issue.issue_name",
+            width: 291,
+            align: "middle",
+            formatter: "textarea",
+            headerFilter: false
+        },
+        {
+            title: "Vote",
+            field: "vote",
+            width: 370,
+            align: "middle",
+            headerFilter: false
+        },
     ],
 };
 
@@ -252,27 +348,21 @@ function afterLoad(myFormObj) {
 
     var winObj = controller.getWindowURLObject();
     windowId = winObj[winObj.length - 1];
-    var table = $(".documentUploadStatus");
     controller.initActions();
 
 }
 
 $(document).ready(function() {
 
-    var winObj = controller.getWindowURLObject();
-    var windowId = winObj[winObj.length - 1];
-    var pageName = winObj[winObj.length - 2];
-
     allFormObj[formObj.formName] = formObj; //register object to main form object
     allFormObj[formObj2.formName] = formObj2; //register object to main form object
     allFormObj[formObj3.formName] = formObj3; //register object to main form object
     allFormObj[formObj4.formName] = formObj4;
 
-
-    //formObj.listUrl = formObj.listUrl + company_id;
     controller.renderCRUDForm("crud_section", formObj, function() {
         console.log("CRUD Form Rendered");
     });
+
     function beforeStartWorkflow(callBack) {
         callBack(true);
     }
