@@ -17,7 +17,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
 
-    <link href="lib/xcrud/plugins/datetime/jquery-ui-timepicker-addon.min.csss" rel="stylesheet" type="text/css">
+    <!-- <link href="lib/xcrud/plugins/datetime/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css"> -->
     <link href="lib/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.css" rel="stylesheet">
     <link href="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
@@ -212,32 +212,60 @@ body { top: 0px !important;
         </div>
       </div>
 
-      <div class="modal fade upload_form_modal" tabindex="-1" role="dialog" id="upload_form_modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal fade upload_form_modal" tabindex="-1" role="dialog" id="upload_form_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload Document</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputCity">Upload File</label>
+                                <input type="file" class="form-control-file" id="meeting_upload_document">
+                                <!-- <textarea class="form-control" id="question_input"></textarea> -->
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="xcrud-action btn btn-info btn-sm" id="save_file" onclick="controller.uploadDoc()">Save Document</button> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="upload_document">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal add_issue_form_modal" id="add_issue_form_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Upload Document</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <h5 class="modal-title">Add Issue</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="inputCity">Upload File</label>
-                            <input type="file" class="form-control-file" id="meeting_upload_document">
-                            <!-- <textarea class="form-control" id="question_input"></textarea> -->
+                    <form method="POST" id="issue_add_form">
+                        <div class="form-group">
+                            <label for="meeting_agenda"> Meeting Agenda</label>
+                            <textarea cols="100" rows="4" class="form-control" id="issue_name"
+                                name="issue_name" placeholder="Enter Issue Description"
+                                required></textarea>
                         </div>
-                    </div>
-                    <!-- <button type="button" class="xcrud-action btn btn-info btn-sm" id="save_file" onclick="controller.uploadDoc()">Save Document</button> -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="upload_document">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="meeting_add_form_button" onclick="AddIssue()" class="btn btn-primary" style="float: right;
+                    font-size: 18px;" >Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
 
       <div id="view_modal">
 
@@ -287,6 +315,9 @@ body { top: 0px !important;
         function upload_document_modal(){
             console.log("hey")
             $('#upload_form_modal').modal({backdrop: 'static', keyboard: false});
+        }
+        function add_issue_modal(){
+            $('#add_issue_form_modal').modal({backdrop: 'static', keyboard: false});
         }
         $('#upload_document').click(function() {
             var url = serverURL + "upload_documents";
@@ -343,6 +374,27 @@ body { top: 0px !important;
                 controller.showToastMsg("Meeting Created","#1a5589")
                 controller.refreshCrudTables('all_meetings');
                 $('.modal.meeting_add_modal').modal('hide');
+            });
+        }
+
+        function AddIssue(){
+            var formJson = $("#issue_add_form").serializeObject();
+            var postData = 
+                {
+                    "meeting_id": allFormObj['parent_selected']['meeting_id'],
+                    "issue_name": formJson['issue_name'],
+                    "votes": 0
+                }
+            var formData = JSON.stringify(postData);
+            var url = serverURL + "create_meeting_issue";
+            var async_status = true;
+
+            controller.request(url, formData, async_status,function(data, status) {
+                console.log(status);
+                console.log(data);
+                controller.showToastMsg("Issue Created","#1a5589")
+                controller.refreshCrudTables('meeting_issues');
+                $('.modal.add_issue_form_modal').modal('hide');
             });
         }
     </script>

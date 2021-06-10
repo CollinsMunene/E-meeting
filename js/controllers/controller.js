@@ -526,7 +526,11 @@ var controller = {
         // htmlCrudForm +="<a href='javascript:;' data-task='print' class='btn btn-light xcrud-in-new-window xcrud-action'><i class='fa fa-print'></i> Print</a><a href='javascript:;' data-task='csv' class='btn btn-light xcrud-in-new-window xcrud-action'><i class='fa fa-file'></i> Export into CSV</a></div>";
 
         if (crudAdd) {
-            htmlCrudForm += "<div class='add_btn_section'><a href='javascript:;' form-name='" + formName + "' data-task='create' class='btn btn-success xcrud-action' onclick='upload_document_modal()'><i class='fa fa-plus'></i> Add Documents</a><div class='clearfix'></div></div>";
+            if(formName == "meeting_issues"){
+                htmlCrudForm += "<div class='add_btn_section'><a href='javascript:;' form-name='" + formName + "' data-task='create' class='btn btn-success xcrud-action' onclick='add_issue_modal()'><i class='fa fa-plus'></i> Add Issue</a><div class='clearfix'></div></div>";
+            }else{
+                htmlCrudForm += "<div class='add_btn_section'><a href='javascript:;' form-name='" + formName + "' data-task='create' class='btn btn-success xcrud-action' onclick='upload_document_modal()'><i class='fa fa-plus'></i> Add Documents</a><div class='clearfix'></div></div>";
+            }
         }
 
         htmlCrudForm += "</div><div class='listings' id='listings_" + formName + "'></div><div class='listings_edit' id='listings_edit_" + formName + "' style='display:none;position:absolute;top: -1px'></div></div>";
@@ -1522,17 +1526,18 @@ var controller = {
                 console.log("data", data);
                 var userObj = JSON.parse(localStorage.getItem('userObj'));
                 if (userObj) {
-                    var url = serverURL + "get_participant_info/"+data.meeting_issues_id+"/"+userObj.users_id;
-                    controller.getRequest(url,true,function(data, status) {
-                        if(data){
+                    var url = serverURL + "get_participant_info/"+userObj.users_id+"/"+data.meeting_issues_id;
+                    controller.getRequest(url,true,function(data1, status) {
+                        console.log(data1)
+                        if(data1){
                             controller.showToastMsg("You Have Already Voted On This Issue","#ff6666")
                         }else{
                             var url2 = serverURL + "upvote/"+data.meeting_issues_id+"/"+userObj.users_id;
                             console.log(url)
-                            controller.request(url2, '', true,function(data, status) {
+                            controller.request(url2, '', true,function(data2, status) {
                                 controller.showToastMsg("Voted Successfuly","#1a5589")
                                 console.log(status);
-                                console.log(data);
+                                console.log(data2);
                                 controller.refreshCrudTables('meeting_issues');
                             });
                         }
@@ -1554,17 +1559,18 @@ var controller = {
                 console.log("data", data);
                 var userObj = JSON.parse(localStorage.getItem('userObj'));
                 if (userObj) {
-                    var url = serverURL + "get_participant_info/"+data.meeting_issues_id+"/"+userObj.users_id;
-                    controller.getRequest(url,true,function(data, status) {
-                        if(data){
+                    var url = serverURL + "get_participant_info/"+userObj.users_id+"/"+data.meeting_issues_id;
+                    controller.getRequest(url,true,function(data1, status) {
+                        console.log(data1)
+                        if(data1){
                             controller.showToastMsg("You Have Already Voted On This Issue","#ff6666")
                         }else{
                             var url2 = serverURL + "downvote/"+data.meeting_issues_id+"/"+userObj.users_id;
                             console.log(url)
-                            controller.request(url2, '', true,function(data, status) {
+                            controller.request(url2, '', true,function(data2, status) {
                                 controller.showToastMsg("Voted Successfuly","#1a5589")
                                 console.log(status);
-                                console.log(data);
+                                console.log(data2);
                                 controller.refreshCrudTables('meeting_issues');
                             });
                         }

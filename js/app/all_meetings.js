@@ -20,7 +20,7 @@ var formObj = {
     dateFields: ['start_date_time','end_date_time'],
     Mytabs: [{ tabName: 'meeting_details', tabTitle: 'Meeting Details', entityName: 'all_meetings' },
         { tabName: 'meeting_documents', tabTitle: 'Documents', entityName: 'meeting_documents' },
-        { tabName: 'meeting_issues', tabTitle: 'Issues Raised', entityName: 'meeting_issues' },
+        { tabName: 'meeting_issues', tabTitle: 'Raised Issues', entityName: 'meeting_issues' },
         { tabName: 'participants', tabTitle: 'Participants & Votes', entityName: 'participants' },
     ],
     childTable: [],
@@ -169,7 +169,7 @@ var formObj3 = {
     crudUpvote: true,
     crudDownvote: true,
     crudView: false,
-    crudAdd: false,
+    crudAdd: true,
     crudEdit: false,
     parentID: 'meeting_id', //primary column for exporter
     linkID: 'meeting_id', //link column in product
