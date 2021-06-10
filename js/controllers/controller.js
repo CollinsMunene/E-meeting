@@ -1314,7 +1314,7 @@ var controller = {
             '    </button>'+
             '   </div>'+
             '   <div class="modal-body">'+
-            '       <form method="POST" id="meeting_update_form">'+
+            '       <form method="POST" autocomplete="off" id="meeting_update_form">'+
             '                   <div class="form-group">'+
             '                       <label for="meeting_name">Meeting Name</label>'+
             '                       <input type="text" class="form-control" id="meeting_name"'+

@@ -17,11 +17,11 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
 
+    <link href="lib/xcrud/plugins/datetime/jquery-ui-timepicker-addon.min.csss" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/tabulator-master/dist/css/bootstrap/tabulator_bootstrap4.css" rel="stylesheet">
     <link href="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
     <link href="lib/xcrud/plugins/toastify-js-master/src/toastify.css" rel="stylesheet" type="text/css" />
-
     <style>
         .tabulator {
             font-size: 14px;
@@ -255,6 +255,7 @@ body { top: 0px !important;
     <script src="lib/xcrud/plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="lib/xcrud/plugins/jcrop/jquery.Jcrop.min.js"></script>
     <script src="lib/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="lib/xcrud/plugins/datetime/jquery-ui-timepicker-addon.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.min.js"></script>
     <script src="js/vendor/app.min.js"></script>
     <script src="lib/xcrud/plugins/visionmedia-page.js-0d7e127/page.js"></script>
@@ -380,5 +381,11 @@ body { top: 0px !important;
           
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
+
+<script>
+    $("#start_date_time").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: "hh:mm tt", changeYear: true, yearRange: '1900:2099' });
+    $("#end_date_time").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: "hh:mm tt", changeYear: true, yearRange: '1900:2099' });
+</script>
+    
 
 </html>
