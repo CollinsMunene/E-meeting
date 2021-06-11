@@ -11,29 +11,44 @@ $(document).ready(function() {
                 "password": formJson['password']
             }
             var formData = JSON.stringify(postData);
-            var url = serverURL + "register";
-            var async_status = true;
+            $.ajax({
+                url: serverURL + "register",
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: formData,
+                success: function(data, textStatus, xhr) {
+                    if (data == "error" || data == "undefined" || data == undefined) {
+                        controller.showToastMsg("Something went wrong. Kindly Call 0715804742", "#ff6666")
+                        document.getElementById('btn-register').innerHTML = "Register";
+                        document.getElementById('btn-register').disabled = false;
+                    } else {
+                        controller.showToastMsg("Dear " + formJson['email'] + " your account has been successfully created. Wait to be redirected", "#1a5589");
+                        setTimeout(function() {
+                            $('body').fadeOut('slow', function() {
+                                window.location = "login.html"; //redirect to user profile
+                            });
+                        }, 2000);
+                        setTimeout(function() {
+                            document.getElementById('btn-register').innerHTML = "Register";
+                            document.getElementById('btn-register').disabled = false;
+                        }, 4000);
+                    }
 
-            controller.request(url, formData, async_status, function(data, status) {
-                console.log(status);
-                console.log(data);
-                if (status == "error" || status == "undefined" || status == undefined) {
+                },
+                fail: function(xhr, textStatus) {
                     controller.showToastMsg("Something went wrong.", "#ff6666")
                     document.getElementById('btn-register').innerHTML = "Register";
                     document.getElementById('btn-register').disabled = false;
-                } else {
-                    controller.showToastMsg("Dear " + formJson['email'] + " your account has been successfully created. Wait to be redirected", "#1a5589");
-                    setTimeout(function() {
-                        $('body').fadeOut('slow', function() {
-                            window.location = "login.html"; //redirect to user profile
-                        });
-                    }, 2000);
-                    setTimeout(function() {
-                        document.getElementById('btn-register').innerHTML = "Register";
-                        document.getElementById('btn-register').disabled = false;
-                    }, 4000);
-                }
 
+                },
+                error: function(xhr, textStatus) {
+                    controller.showToastMsg("Something went wrong.", "#ff6666")
+                    document.getElementById('btn-register').innerHTML = "Register";
+                    document.getElementById('btn-register').disabled = false;
+
+                }
             });
 
         });
