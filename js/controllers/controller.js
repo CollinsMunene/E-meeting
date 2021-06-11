@@ -15,8 +15,8 @@ $.fn.serializeObject = function() {
 };
 
 const publicPages = [];
-var serverURL = "http://127.0.0.1:8000/";
-// var serverURL = "https://coseke-emeeting-backend.herokuapp.com/"
+// var serverURL = "http://127.0.0.1:8000/";
+var serverURL = "https://coseke-emeeting-backend.herokuapp.com/"
 
 
 var setupObj = [];
