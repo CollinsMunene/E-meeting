@@ -16,22 +16,22 @@ $(document).ready(function() {
             var url = serverURL + "login";
             var async_status = true;
 
-            controller.request(url, formData, async_status,function(data, status) {
+            controller.request(url, formData, async_status, function(data, status) {
                 console.log(status);
                 console.log(data);
-                if(status == "error"){
-                    controller.showToastMsg("Wrong Email/Password.","#ff6666");
+                if (status == "error" || status == "undefined" || status == undefined) {
+                    controller.showToastMsg("Wrong Email/Password.", "#ff6666");
                     document.getElementById('btn-login').innerHTML = "Log In";
                     document.getElementById('btn-login').disabled = false;
-                }else{
+                } else {
                     var userobj = JSON.stringify(data); // stringify user data 
 
                     var jsonObj = JSON.stringify(data); // stringify user data 
                     localStorage.setItem("userObj", jsonObj); // add the json obj to the local storage
-    
+
                     console.log("Usersaved>>>>>>>>>>", localStorage.getItem("userObj"));
-    
-                    controller.showToastMsg("Log In successful!, Wait to be redirected.","#1a5589")
+
+                    controller.showToastMsg("Log In successful!, Wait to be redirected.", "#1a5589")
                     setTimeout(function() {
                         $('body').fadeOut('slow', function() {
                             window.location = "./#app/all_meetings"; //redirect to user profile
@@ -51,6 +51,7 @@ $(document).ready(function() {
         return false;
     });
 });
+
 function afterLoad() {
     console.log("page loaded");
 }
